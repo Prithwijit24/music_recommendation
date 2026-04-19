@@ -1,0 +1,11 @@
+project:
+  name: music-recommendation-system
+dataset:
+  content_csv: YearPredictionMSD.csv
+  interactions_csv: null
+  sample_size: 15000
+train:
+  latent_factors: 32
+  epochs: 5
+  batch_size: 256
+  learning_rate: 0.001
