@@ -2,6 +2,38 @@
 
 🎵 Dive into the future of music discovery with **PulseMix** – transforming raw data into an intelligent, deployable recommendation platform that understands your unique taste! 🚀
 
+## 🏔️ System Design Overview
+
+The PulseMix architecture follows a layered pipeline designed to transform raw audio features into personalized music recommendations. The system is structured as follows:
+
+### 📥 Input Layer
+- **Million Song Dataset (MSD)**: Raw metadata and audio feature dataset serving as the baseline item catalog.
+- **User Interaction Data**: Optional implicit feedback (play_count, likes, skips, session IDs, timestamps) for collaborative filtering.
+
+### 🔧 Feature Engineering
+- **Audio Feature Extraction**: Compression and transformation of MSD embeddings for efficient similarity search.
+- **Feature Normalization**: Standardization pipeline for consistent model input.
+- **Feature Store**: Persistent storage of engineered features for both content-based and deep learning models.
+
+### 🤖 Model Hub
+- **Content-Based Retrieval**: Nearest-neighbor search over compressed song embeddings to find similar tracks.
+- **Collaborative Filtering**: User-item interaction matrix factorization once sufficient feedback data is collected.
+- **Hybrid Ranking**: Dynamic blending of content and collaborative signals for optimal suggestion quality.
+- **Classical ML Baselines**: Year prediction and foundational analysis models for evaluation and debugging.
+- **Deep Autoencoder**: Advanced representation learning to uncover latent patterns in audio features.
+
+### 🌐 API & Services Layer
+- **Recommendation Service**: REST/API endpoint for fetching personalized recommendations.
+- **Pipeline Orchestration**: End-to-end ML pipelines for training, evaluation, and inference.
+- **Business Logic**: User management, session handling, and recommendation personalization.
+
+### 🖥️ User Interface
+- **Streamlit UI**: Interactive web interface to browse, search, and experience recommendations in real-time.
+
+### 🐳 Deployment
+- **Docker**: Containerized application stack for consistent local and production environments.
+- **Kubernetes**: Orchestration manifests for scalable deployment and management.
+
 ## What is PulseMix?
 PulseMix is designed with a layered approach to deliver unparalleled music recommendations:
 - **💡 Content-based Retrieval:** Utilizing the rich features of the Million Song Dataset to find similar tracks.
@@ -62,7 +94,7 @@ PulseMix is designed with a layered approach to deliver unparalleled music recom
 - **⚡ `uv`-managed environment:** Fast and efficient dependency management.
 - **🎶 Content-based Recommender:** Discover new music with nearest neighbors over compressed song embeddings.
 - **🤖 ML Baseline:** Predict song years with a robust machine learning model on available datasets.
-- ** profundo 🧠 Deep Autoencoder:** Learn powerful representations from audio features for advanced insights.
+- **🧠 Deep Autoencoder:** Learn powerful representations from audio features for advanced insights.
 - **🌐 Streamlit UI:** Instantly preview and interact with recommendations.
 - **🐳 Docker & Kubernetes:** Built-in support for containerization and orchestration for scalable deployments.
 

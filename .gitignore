@@ -1,0 +1,57 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.env
+venv/
+env/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+.dockerignore
+
+# Data & Artifacts
+artifacts/
+data/
+*.csv
+*.json
+*.pkl
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# Project specific
+QUICKSTART.md
+notebooks/*.ipynb
+scripts/
+
+# uv lock file
+uv.lock
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Config
+conf/
+
+# Temporary
+*.log
+*.tmp
+
+# os
+.DS_Store
