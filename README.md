@@ -34,6 +34,10 @@ The PulseMix architecture follows a layered pipeline designed to transform raw a
 - **Docker**: Containerized application stack for consistent local and production environments.
 - **Kubernetes**: Orchestration manifests for scalable deployment and management.
 
+![System Design Architecture](music_system_design_architecture.png)
+
+_System design architecture diagram visualizing the PulseMix layered pipeline._
+
 ## What is PulseMix?
 PulseMix is designed with a layered approach to deliver unparalleled music recommendations:
 - **💡 Content-based Retrieval:** Utilizing the rich features of the Million Song Dataset to find similar tracks.
