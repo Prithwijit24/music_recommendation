@@ -1,165 +1,139 @@
-# ✨ PulseMix: Your Next-Gen Music Recommendation System! ✨
+# PulseMix
 
-🎵 Dive into the future of music discovery with **PulseMix** – transforming raw data into an intelligent, deployable recommendation platform that understands your unique taste! 🚀
+A music recommendation system built on the Million Song Dataset, combining content-based retrieval, classical ML baselines, and deep representation learning behind a Streamlit UI and a deployable service layer.
 
-## 🏔️ System Design Overview
-
-The PulseMix architecture follows a layered pipeline designed to transform raw audio features into personalized music recommendations. The system is structured as follows:
-
-### 📥 Input Layer
-- **Million Song Dataset (MSD)**: Raw metadata and audio feature dataset serving as the baseline item catalog.
-- **User Interaction Data**: Optional implicit feedback (play_count, likes, skips, session IDs, timestamps) for collaborative filtering.
-
-### 🔧 Feature Engineering
-- **Audio Feature Extraction**: Compression and transformation of MSD embeddings for efficient similarity search.
-- **Feature Normalization**: Standardization pipeline for consistent model input.
-- **Feature Store**: Persistent storage of engineered features for both content-based and deep learning models.
-
-### 🤖 Model Hub
-- **Content-Based Retrieval**: Nearest-neighbor search over compressed song embeddings to find similar tracks.
-- **Collaborative Filtering**: User-item interaction matrix factorization once sufficient feedback data is collected.
-- **Hybrid Ranking**: Dynamic blending of content and collaborative signals for optimal suggestion quality.
-- **Classical ML Baselines**: Year prediction and foundational analysis models for evaluation and debugging.
-- **Deep Autoencoder**: Advanced representation learning to uncover latent patterns in audio features.
-
-### 🌐 API & Services Layer
-- **Recommendation Service**: REST/API endpoint for fetching personalized recommendations.
-- **Pipeline Orchestration**: End-to-end ML pipelines for training, evaluation, and inference.
-- **Business Logic**: User management, session handling, and recommendation personalization.
-
-### 🖥️ User Interface
-- **Streamlit UI**: Interactive web interface to browse, search, and experience recommendations in real-time.
-
-### 🐳 Deployment
-- **Docker**: Containerized application stack for consistent local and production environments.
-- **Kubernetes**: Orchestration manifests for scalable deployment and management.
-
-![System Design Architecture](music_system_design_architecture.png)
-
-_System design architecture diagram visualizing the PulseMix layered pipeline._
-
-## What is PulseMix?
-PulseMix is designed with a layered approach to deliver unparalleled music recommendations:
-- **💡 Content-based Retrieval:** Utilizing the rich features of the Million Song Dataset to find similar tracks.
-- **🤝 Collaborative Filtering:** Ready for user interaction data to predict what you and others will love.
-- **🧠 Hybrid Ranking:** Blending the best of both content and collaborative signals for spot-on suggestions.
-- **📊 Classical ML Baselines:** Robust models for year prediction and foundational analysis.
-- **🌌 Deep Learning:** Advanced representation learning to uncover hidden patterns in audio features.
-- **🖥️ Intuitive Streamlit UI:** A sleek, interactive interface to experience your recommendations.
-- **🐳 Production-Ready:** Packaged with Docker, Kubernetes manifests, and clear documentation for seamless deployment.
-
-## 🏗️ Project Structure & Architecture Overview
+## Architecture
 
 ```
-.
-├───README.md                     # 📖 This file! Overall project information.
-├───.git/                         # 📜 Git version control metadata.
-└───src/
-    └───project_folder/
-        ├───.github/              # 🌐 GitHub Actions workflows for CI/CD.
-        │   └───workflows/
-        │       ├───cd.yml        # Continuous Deployment pipeline.
-        │       └───ci.yml        # Continuous Integration pipeline.
-        ├───artifacts/            # 📦 Output directory for models and reports.
-        │   ├───models/           # 🧠 Trained machine learning models.
-        │   └───reports/          # 📊 Evaluation reports and visualizations.
-        ├───conf/                 # ⚙️ Configuration files.
-        │   └───config.yaml       # Main project configuration.
-        ├───data/                 # 📥 Raw and processed data storage.
-        ├───docker/               # 🐳 Docker-related files.
-        ├───docs/                 # 📝 Documentation files.
-        │   └───CI_CD.md          # CI/CD specific documentation.
-        ├───k8s/                  # ☸️ Kubernetes deployment manifests.
-        │   ├───deployment.yaml   # Kubernetes Deployment definition.
-        │   └───service.yaml      # Kubernetes Service definition.
-        ├───notebooks/            # 📊 Jupyter notebooks for experimentation.
-        │   └───music_reco.ipynb  # Main music recommendation notebook.
-        ├───scripts/              # 🐚 Utility scripts.
-        ├───src/music_recommendation/ # 🚀 Core application source code.
-        │   ├───data/             # Data loading and preprocessing utilities.
-        │   ├───features/         # Feature engineering and transformations.
-        │   ├───models/           # Implementations of various recommendation models.
-        │   ├───pipelines/        # End-to-end ML pipelines (training, prediction).
-        │   ├───services/         # Business logic and API services.
-        │   ├───ui/               # Streamlit user interface components.
-        │   └───utils/            # General helper utilities.
-        ├───tests/                # 🧪 Unit and integration tests.
-        │   └───test_pipeline.py  # Example test for the ML pipeline.
-        ├───main.py               # 🚀 Main application entry point (e.g., FastAPI, CLI).
-        ├───pyproject.toml        # 🐍 Project metadata and dependencies (Poetry/Hatch).
-        ├───QUICKSTART.md         # ⚡ Quick start guide.
-        ├───streamlit_app.py      # 🖥️ Streamlit application entry point.
-        └───uv.lock               # 🔒 `uv` dependency lock file.
+Million Song Dataset (item catalog)
+User interaction data (optional: play_count, likes, skips, sessions)
+              │
+              ▼
+   Feature Engineering
+   - Audio feature extraction / compression
+   - Normalization
+   - Feature store
+              │
+              ▼
+        Model Hub
+   - Content-based retrieval (nearest-neighbor over embeddings)
+   - Collaborative filtering (matrix factorization, requires interaction data)
+   - Hybrid ranking (blends content + collaborative signals)
+   - Classical ML baselines (year prediction)
+   - Deep autoencoder (latent representation learning)
+              │
+              ▼
+    API & Services Layer
+   - Recommendation service (REST)
+   - Pipeline orchestration (train / eval / infer)
+   - Business logic (users, sessions, personalization)
+              │
+              ▼
+        Streamlit UI
 ```
 
-## ✅ What's Ready to Rock?
+![Architecture](music_system_design_architecture.png)
 
-- **📦 Deployment-ready Python package structure:** Clean and organized for easy development and deployment.
-- **⚡ `uv`-managed environment:** Fast and efficient dependency management.
-- **🎶 Content-based Recommender:** Discover new music with nearest neighbors over compressed song embeddings.
-- **🤖 ML Baseline:** Predict song years with a robust machine learning model on available datasets.
-- **🧠 Deep Autoencoder:** Learn powerful representations from audio features for advanced insights.
-- **🌐 Streamlit UI:** Instantly preview and interact with recommendations.
-- **🐳 Docker & Kubernetes:** Built-in support for containerization and orchestration for scalable deployments.
+## Components
 
-## 📈 Supercharge Your Recommendations (Data Needed!)
+| Layer | Description |
+|---|---|
+| Content-based retrieval | Nearest-neighbor search over compressed MSD audio embeddings |
+| Collaborative filtering | User-item matrix factorization, activates once interaction data is available |
+| Hybrid ranking | Combines content and collaborative signals |
+| Classical ML baseline | Year-prediction model for evaluation/debugging |
+| Deep autoencoder | Learns latent representations from audio features |
+| Recommendation service | REST API for serving personalized recommendations |
+| Streamlit UI | Interactive browsing/search interface |
 
-The current `YearPredictionMSD.csv` is great for item features, but to unlock the full potential of collaborative filtering and a truly personalized hybrid stack, we need **user interaction data**!
+## Project Structure
 
-Ideally, a dataset structured like:
+```
+src/project_folder/
+├── .github/workflows/       # ci.yml, cd.yml
+├── artifacts/
+│   ├── models/               # trained model artifacts
+│   └── reports/               # evaluation reports, visualizations
+├── conf/config.yaml           # project configuration
+├── data/                       # raw / processed data
+├── docker/                     # Docker assets
+├── docs/CI_CD.md
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
+├── notebooks/music_reco.ipynb
+├── scripts/
+├── src/music_recommendation/
+│   ├── data/                   # loading, preprocessing
+│   ├── features/                # feature engineering
+│   ├── models/                   # recommender implementations
+│   ├── pipelines/                 # train / predict pipelines
+│   ├── services/                   # API / business logic
+│   ├── ui/                          # Streamlit components
+│   └── utils/
+├── tests/test_pipeline.py
+├── main.py                          # app entry point
+├── pyproject.toml
+├── QUICKSTART.md
+├── streamlit_app.py
+└── uv.lock
+```
+
+## Requirements
+
+- Python (managed via `uv`)
+- `pip install uv`
+
+## Setup
+
+```bash
+cd src/project_folder
+uv sync
+```
+
+## Usage
+
+```bash
+# Train models
+uv run music-rec train
+
+# Launch UI
+uv run streamlit run streamlit_app.py
+
+# Run tests
+uv run pytest tests/
+
+# Lint / format
+uv run ruff check .
+uv run ruff format .
+```
+
+## Docker
+
+```bash
+docker build -t pulsemix:latest src/project_folder
+docker run -p 8501:8501 pulsemix:latest uv run streamlit run streamlit_app.py
+```
+
+Kubernetes manifests: `src/project_folder/k8s/deployment.yaml`, `src/project_folder/k8s/service.yaml`
+
+## Data
+
+Item features currently come from `YearPredictionMSD.csv`. Collaborative filtering and hybrid ranking require user interaction data in one of the following forms:
+
 ```
 user_id,track_id,rating
 ```
-Even better: implicit feedback like `play_count`, `like`, `skip`, `session_id`, and timestamps will revolutionize the recommendations! 💖
+or implicit feedback: `play_count`, `like`, `skip`, `session_id`, `timestamp`.
 
-## 🚀 Get Started Today!
+Without this data, the system falls back to content-based retrieval and the classical ML baseline only.
 
-It's super easy to get PulseMix up and running. Ensure you have `uv` installed (`pip install uv`).
+## Documentation
 
-### 🛠️ Local Development
+- [QUICKSTART.md](src/project_folder/QUICKSTART.md)
+- [notebooks/music_reco.ipynb](src/project_folder/notebooks/music_reco.ipynb)
+- [docs/CI_CD.md](src/project_folder/docs/CI_CD.md)
 
-1.  **Sync your environment:**
-    ```bash
-    cd src/project_folder
-    uv sync
-    ```
-2.  **Train your models:**
-    ```bash
-    uv run music-rec train
-    ```
-3.  **Launch the Streamlit UI!**
-    ```bash
-    uv run streamlit run streamlit_app.py
-    ```
-4.  **Run Tests:**
-    ```bash
-    uv run pytest tests/
-    ```
-5.  **Lint and Format (using Ruff):**
-    ```bash
-    uv run ruff check .
-    uv run ruff format .
-    ```
+## License
 
-### 🐳 Docker Commands
-
-1.  **Build the Docker image:**
-    ```bash
-    docker build -t pulsemix:latest src/project_folder
-    ```
-2.  **Run the Docker container (example for Streamlit):**
-    ```bash
-    docker run -p 8501:8501 pulsemix:latest uv run streamlit run streamlit_app.py
-    ```
-
-## 📚 Essential Resources
-
-- **⚡ Quickstart Guide:** [QUICKSTART.md](src/project_folder/QUICKSTART.md)
-- **🧪 Jupyter Notebook:** [notebooks/music_reco.ipynb](src/project_folder/notebooks/music_reco.ipynb)
-- **⚙️ CI/CD Workflow:** [docs/CI_CD.md](src/project_folder/docs/CI_CD.md)
-- **☸️ Kubernetes Manifests:**
-    - [k8s/deployment.yaml](src/project_folder/k8s/deployment.yaml)
-    - [k8s/service.yaml](src/project_folder/k8s/service.yaml)
-
----
-Made with ❤️ for music lovers and data enthusiasts!
+Not currently specified.
